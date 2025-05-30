@@ -58,10 +58,6 @@ module "alb" {
   subnets            = module.blog_vpc.public_subnets
   security_groups    = [module.blog_sg.security_group_id]
 
-  access_logs = {
-    bucket = "my-alb-logs"
-  }
-
   target_groups = [
     {
       name_prefix      = "blog-"
@@ -81,15 +77,6 @@ module "alb" {
     }
   ]
 
-  https_listeners = [
-    {
-      port               = 443
-      protocol           = "HTTPS"
-      certificate_arn    = "arn:aws:iam::123456789012:server-certificate/test_cert-123456789012"
-      target_group_index = 0
-    }
-  ]
-
   http_tcp_listeners = [
     {
       port               = 80
@@ -99,7 +86,7 @@ module "alb" {
   ]
 
   tags = {
-    Environment = "Test"
+    Environment = "dev"
   }
 }
 
