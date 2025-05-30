@@ -14,10 +14,6 @@ data "aws_ami" "app_ami" {
   owners = ["979382823631"] # Bitnami
 }
 
-provider "aws" {
-  region = "us-west-2"
-}
-
 data "aws_vpc" "default"{
   default = true
 }
@@ -57,7 +53,7 @@ module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
-  name = "blog-alb"
+  name = "blog-alb-pk1"
 
   load_balancer_type = "application"
 
